@@ -22,30 +22,39 @@ public class Spaceship : MonoBehaviour
         return this.spaceshipGrid;
     }
 
-    public Module GetModule(Vector2 position) {
+    public Module GetModule(Vector2 position)
+    {
         return this.spaceshipGrid.GetModule(position);
     }
 
-    public Module SetModule(Vector2 position, ModuleType moduleType) {
+    public Module SetModule(Vector2 position, ModuleType moduleType)
+    {
         return this.spaceshipGrid.SetModule(position, moduleType);
     }
 
-    public Module GetModule(ModuleType moduleType) {
-        if (!this.moduleTypes.ContainsKey(moduleType)) {
+    public Module GetModule(ModuleType moduleType)
+    {
+        if (!this.moduleTypes.ContainsKey(moduleType))
+        {
             moduleType = ModuleType.EMPTY;
         }
 
         return this.moduleTypes[moduleType];
     }
 
-    public void DestroyModule(Module module) {
+    public void DestroyModule(Module module)
+    {
         Vector2 position = module.transform.position;
         Destroy(module.gameObject);
         this.SetModule(position, ModuleType.EMPTY);
     }
 
-    public Module InstantiateModule(Vector2 position, ModuleType moduleType) {
-        Module module = Instantiate(this.GetModule(moduleType).transform, position, Quaternion.identity, this.transform).GetComponent<Module>();
+    public Module InstantiateModule(Vector2 position, ModuleType moduleType)
+    {
+        Transform instantiatedModule = Instantiate(this.GetModule(moduleType).transform, position, Quaternion.identity, this.transform);
+        instantiatedModule.name = instantiatedModule.name.Replace("(Clone)", "");
+
+        Module module = instantiatedModule.GetComponent<Module>();
         int posX = (int)(position.x + this.size + 0.5f);
         int posY = (int)(position.y + this.size + 0.5f);
         module.SetLoc(posX, posY);
@@ -53,10 +62,11 @@ public class Spaceship : MonoBehaviour
         return module;
     }
 
-    private void InitializeDictionary() 
+    private void InitializeDictionary()
     {
         this.moduleTypes = new Dictionary<ModuleType, Module>();
-        foreach (TypeModule typeModule in this.types) {
+        foreach (TypeModule typeModule in this.types)
+        {
             this.moduleTypes.Add(typeModule.type, typeModule.module);
         }
     }
