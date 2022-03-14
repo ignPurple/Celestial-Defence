@@ -18,12 +18,12 @@ public class CameraWidthManager : MonoBehaviour
 
         foreach (Module module in this.spaceship.GetSpaceshipGrid().GetModules())
         {
-            int x = Mathf.Abs(module.x);
-            int y = Mathf.Abs(module.y);
+            int x = (int) Mathf.Abs(module.transform.position.x);
+            int y = (int) Mathf.Abs(module.transform.position.y);
             maxSize = Mathf.Max(maxSize, x, y);
         }
 
         float currentSize = Camera.main.orthographicSize;
-        Camera.main.orthographicSize = Mathf.Lerp(currentSize, this.baseSize + maxSize - 5, Time.deltaTime);
+        Camera.main.orthographicSize = Mathf.Lerp(currentSize, this.baseSize + maxSize, Time.deltaTime);
     }
 }

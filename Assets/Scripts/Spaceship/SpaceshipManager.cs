@@ -13,9 +13,10 @@ public class SpaceshipManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Module module = spaceship.GetModule(position);
+            Module module = this.spaceship.GetModule(position);
             if (module == null || typeof(EmptyModule).IsInstanceOfType(module))
             {
+                this.spaceship.SetModule(module.transform.position, ModuleType.BASE);
                 return;
             }
 

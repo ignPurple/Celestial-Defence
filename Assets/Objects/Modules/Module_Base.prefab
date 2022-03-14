@@ -131,7 +131,7 @@ MonoBehaviour:
   gunPivot: {fileID: 6953625507353549791}
   gun: {fileID: 371367627732273882}
   rotationSpeed: 7.5
-  tickDelay: 2
+  tickDelay: 0.5
 --- !u!1 &6517136485127957582
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,7 +231,7 @@ MonoBehaviour:
   gunPivot: {fileID: 6953625507353549791}
   firePoint: {fileID: 8702599713810012628}
   bulletType: {fileID: 2545479591741369309, guid: d8390e62d356e724998359e7fd27c2d6, type: 3}
-  bulletSpeed: 3
+  bulletSpeed: 5
   bulletAmount: 1
   bulletSpread: 0
 --- !u!1 &9075379108921493175

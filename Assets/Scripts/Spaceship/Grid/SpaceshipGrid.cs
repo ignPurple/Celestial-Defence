@@ -69,6 +69,11 @@ public class SpaceshipGrid
 
     public Module SetModule(Vector2 position, ModuleType moduleType)
     {
+        Module currentModule = GetModule(position);
+        if (currentModule != null) {
+            this.parent.DestroyModule(currentModule, false);
+        }
+
         int posX = (int)(position.x + this.size + 0.5f);
         int posY = (int)(position.y + this.size + 0.5f);
 

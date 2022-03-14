@@ -42,10 +42,15 @@ public class Spaceship : MonoBehaviour
         return this.moduleTypes[moduleType];
     }
 
-    public void DestroyModule(Module module)
+    public void DestroyModule(Module module, bool replace)
     {
         Vector2 position = module.transform.position;
         Destroy(module.gameObject);
+        
+        if (!replace) {
+            return;
+        }
+
         this.SetModule(position, ModuleType.EMPTY);
     }
 
