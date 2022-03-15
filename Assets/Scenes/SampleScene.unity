@@ -245,7 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceship: {fileID: 1460499470}
-  baseSize: 1.75
+  baseSize: 10
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
