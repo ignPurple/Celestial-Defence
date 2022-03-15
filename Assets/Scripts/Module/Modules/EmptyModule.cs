@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class EmptyModule : Module
 {
-    public override void Tick() {}
+    public override void Tick() { }
 }

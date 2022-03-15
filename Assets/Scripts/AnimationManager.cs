@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AnimationManager : MonoBehaviour
 {
-    
+
     public List<SubAnimator> animatorsList;
     private Dictionary<string, Animator> animators;
 
@@ -16,12 +16,14 @@ public class AnimationManager : MonoBehaviour
         }
     }
 
-    public Animator GetAnimator(string name) {
+    public Animator GetAnimator(string name)
+    {
         return this.animators[name.ToUpper()];
     }
 
     [System.Serializable]
-    public class SubAnimator {
+    public class SubAnimator
+    {
         public string name;
         public Animator animator;
     }

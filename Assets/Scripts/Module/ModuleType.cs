@@ -5,5 +5,5 @@ using UnityEngine;
 public enum ModuleType
 {
     EMPTY,
-    TEST
+    BASE
 }

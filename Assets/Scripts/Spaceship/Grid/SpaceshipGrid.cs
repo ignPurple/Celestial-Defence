@@ -16,21 +16,41 @@ public class SpaceshipGrid
         this.InitializeArray();
     }
 
-    public void TickModules() 
+    public void TickModules()
     {
         for (int width = 0; width < this.spaceshipGrid.GetLength(0); width++)
         {
             for (int length = 0; length < this.spaceshipGrid.GetLength(1); length++)
             {
-                Module module = (Module) this.spaceshipGrid[width, length];
-                if (module == null) 
+                Module module = (Module)this.spaceshipGrid[width, length];
+                if (module == null)
                 {
                     continue;
                 }
-                
+
                 module.Tick();
             }
         }
+    }
+
+    public List<Module> GetModules()
+    {
+        List<Module> modules = new List<Module>();
+        for (int width = 0; width < this.spaceshipGrid.GetLength(0); width++)
+        {
+            for (int length = 0; length < this.spaceshipGrid.GetLength(1); length++)
+            {
+                Module module = (Module)this.spaceshipGrid[width, length];
+                if (typeof(EmptyModule).IsInstanceOfType(module))
+                {
+                    continue;
+                }
+
+                modules.Add(module);
+            }
+        }
+
+        return modules;
     }
 
     public Module GetModule(Vector2 position)
@@ -38,7 +58,8 @@ public class SpaceshipGrid
         int posX = (int)(position.x + this.size + 0.5f);
         int posY = (int)(position.y + this.size + 0.5f);
 
-        if (posX > this.spaceshipGrid.GetLength(0) || posY > this.spaceshipGrid.GetLength(1)) {
+        if (posX > this.spaceshipGrid.GetLength(0) || posY > this.spaceshipGrid.GetLength(1))
+        {
             return null;
         }
 
@@ -48,6 +69,11 @@ public class SpaceshipGrid
 
     public Module SetModule(Vector2 position, ModuleType moduleType)
     {
+        Module currentModule = GetModule(position);
+        if (currentModule != null) {
+            this.parent.DestroyModule(currentModule, false);
+        }
+
         int posX = (int)(position.x + this.size + 0.5f);
         int posY = (int)(position.y + this.size + 0.5f);
 
@@ -71,6 +97,8 @@ public class SpaceshipGrid
                 this.spaceshipGrid[width, length] = module;
             }
         }
+
+        this.spaceshipGrid[this.size, this.size] = this.CreateModule(new Vector2(0, 0), ModuleType.BASE);
     }
 
     private Module CreateModule(Vector2 position, ModuleType moduleType)
