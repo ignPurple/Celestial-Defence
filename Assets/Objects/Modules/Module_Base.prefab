@@ -74,6 +74,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -176,6 +177,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -233,7 +235,7 @@ MonoBehaviour:
   bulletType: {fileID: 2545479591741369309, guid: d8390e62d356e724998359e7fd27c2d6, type: 3}
   bulletSpeed: 5
   bulletAmount: 1
-  bulletSpread: 0
+  bulletSpread: 5
 --- !u!1 &9075379108921493175
 GameObject:
   m_ObjectHideFlags: 0

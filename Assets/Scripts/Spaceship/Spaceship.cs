@@ -22,6 +22,10 @@ public class Spaceship : MonoBehaviour
         return this.spaceshipGrid;
     }
 
+    public bool IsAdjecent(Vector2 position) {
+        return this.spaceshipGrid.IsAdjecent(position);
+    }
+
     public Module GetModule(Vector2 position)
     {
         return this.spaceshipGrid.GetModule(position);

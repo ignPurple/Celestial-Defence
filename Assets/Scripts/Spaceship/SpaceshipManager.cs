@@ -16,6 +16,11 @@ public class SpaceshipManager : MonoBehaviour
             Module module = this.spaceship.GetModule(position);
             if (module == null || typeof(EmptyModule).IsInstanceOfType(module))
             {
+                if (!this.spaceship.IsAdjecent(position)) 
+                {
+                    return;
+                }
+
                 this.spaceship.SetModule(module.transform.position, ModuleType.BASE);
                 return;
             }

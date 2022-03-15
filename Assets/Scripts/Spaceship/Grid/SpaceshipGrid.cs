@@ -53,12 +53,33 @@ public class SpaceshipGrid
         return modules;
     }
 
+    public bool IsAdjecent(Vector2 position)
+    {
+        for (int x = -1; x <= 1; x++)
+        {
+            for (int y = -1; y <= 1; y++)
+            {
+                Module module = this.GetModule(new Vector2(position.x + x, position.y + y));
+                Debug.Log(x + ":" + y);
+                if ((x == 0 || y == 0)
+                    || module == null || typeof(EmptyModule).IsInstanceOfType(module))
+                {
+                    continue;
+                }
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public Module GetModule(Vector2 position)
     {
         int posX = (int)(position.x + this.size + 0.5f);
         int posY = (int)(position.y + this.size + 0.5f);
 
-        if (posX > this.spaceshipGrid.GetLength(0) || posY > this.spaceshipGrid.GetLength(1))
+        if (posX < 0 || posX >= this.spaceshipGrid.GetLength(0) || posY < 0 || posY >= this.spaceshipGrid.GetLength(1))
         {
             return null;
         }
@@ -70,7 +91,8 @@ public class SpaceshipGrid
     public Module SetModule(Vector2 position, ModuleType moduleType)
     {
         Module currentModule = GetModule(position);
-        if (currentModule != null) {
+        if (currentModule != null)
+        {
             this.parent.DestroyModule(currentModule, false);
         }
 
