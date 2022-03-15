@@ -9,10 +9,10 @@ public class AnimationManager : MonoBehaviour
     private Dictionary<string, Animator> animators;
 
     void Awake() {
-        animators = new Dictionary<string, Animator>();
+        this.animators = new Dictionary<string, Animator>();
 
         foreach (SubAnimator animator in this.animatorsList) {
-            animators.Add(animator.name.ToUpper(), animator.animator);
+            this.animators.Add(animator.name.ToUpper(), animator.animator);
         }
     }
 
